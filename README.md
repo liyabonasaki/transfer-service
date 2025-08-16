@@ -39,7 +39,45 @@
 ## Setup
 
 1. **Clone the repository**
+   ```bash
+   git clone https://github.com/liyabonasaki/transfer-service.git
+   cd transfer-service
 
-```bash
-git clone (https://github.com/liyabonasaki/transfer-service.git)
-cd transfer-service
+## ⚙️ How to Run
+
+### 🐳 Docker (Recommended)
+
+1. **Create the Docker network for both services:**
+   ```bash
+   docker network create fintech-network
+
+2. **Build the Docker image:**
+   ```bash
+   docker build -t transfer-service .
+
+3. **Run the Docker image inside the network:**
+   ```bash
+   docker run -d --name transferservice --network fintech-network -p 8080:8080 transfer-service
+
+### 🧪 Running Locally (without Docker)
+
+1. **Build the project to produce the jar :**
+   ```bash
+      mvn clean package
+   
+2. **Run the application:**
+   ```bash
+      java -jar target/transfer-service-0.0.1-SNAPSHOT.jar
+
+### Running with Maven
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/liyabonasaki/transfer-service.git
+   cd transfer-service
+
+2. **Build and run the project**
+   ```bash
+   mvn spring-boot:run
+
+## Accessing the API using Swagger
+Open your browser and go to http://localhost:8080/swagger-ui/index.html#/
