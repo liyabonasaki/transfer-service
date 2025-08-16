@@ -81,3 +81,4 @@
 
 ## Accessing the API using Swagger
 Open your browser and go to http://localhost:8080/swagger-ui/index.html#/
+![img.png](img.png)
