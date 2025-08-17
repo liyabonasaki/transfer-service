@@ -47,7 +47,7 @@
 
 ### 🐳 Docker (Recommended)
 
-1. **Create the Docker network for both services:**
+1. **Ensure you have created the network to mount the 2 images**
    ```bash
    docker network create fintech-network
 
@@ -57,7 +57,7 @@
 
 3. **Run the Docker image inside the network:**
    ```bash
-   docker run -d --name transferservice --network fintech-network -p 8080:8080 transfer-service
+   docker run -d --name transfer-service --network fintech-network -p 8080:8080 transfer-service
 
 ### 🧪 Running Locally (without Docker)
 

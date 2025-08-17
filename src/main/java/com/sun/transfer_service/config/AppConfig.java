@@ -1,6 +1,7 @@
 package com.sun.transfer_service.config;
 
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
@@ -13,9 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class AppConfig {
 
     @Bean
-    public WebClient ledgerWebClient() {
-        String baseUrl = "http://localhost:8081"; // Hardcoded for now
-
+    public WebClient ledgerWebClient(@Value("${ledger.base-url}") String baseUrl) {
         return WebClient.builder()
                 .baseUrl(baseUrl)
                 .filter((request, next) -> {
@@ -34,9 +33,9 @@ public class AppConfig {
     @Bean
     public TaskExecutor batchExecutor() {
         ThreadPoolTaskExecutor ex = new ThreadPoolTaskExecutor();
-        ex.setCorePoolSize(20);  // increase from 10
-        ex.setMaxPoolSize(40);   // increase from 20
-        ex.setQueueCapacity(200); // increase from 100
+        ex.setCorePoolSize(20);
+        ex.setMaxPoolSize(40);
+        ex.setQueueCapacity(200);
         ex.setThreadNamePrefix("batch-transfer-");
         ex.initialize();
         return ex;
